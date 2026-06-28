@@ -8,7 +8,7 @@ The long-form version of the ideas behind the [thesis](README.md). A research no
 
 Start from the honest admission. For a small, closed task we know how to guide an agent: write a reward, maximize it. For a **super-complex agent in a huge open environment**, we do not. There is no reward function for *living*. Reward specification — the thing all of RL stands on — does not survive contact with real, open-ended complexity. We have no guiding principle for that regime.
 
-But the regime is not hypothetical, and it is not unsolved. Every human is an existence proof: we navigate an environment of overwhelming complexity, with no episodes and no score, guided entirely by **internal feeling** — the pull of attention, the sense of beauty, inclinations we can't verbalize, hunger and pain and care. Evolution found this because it could not write us a reward either; feeling *is* the open-world guidance system, and it is sitting inside every person.
+But the regime is not hypothetical, and it is not unsolved. Every human is an existence proof: we navigate an environment of overwhelming complexity, with no episodes and no score, guided entirely by **internal feeling** — the pull of attention, our innate dispositions we can't verbalize. Evolution found this because it could not write us a reward either; feeling *is* the open-world guidance system, and it is sitting inside every person.
 
 So the move is: when the world gets too complex to write a reward for, copy the only thing that is known to work — **the human felt system.** Not because it's elegant, but because it is the sole working example we have, and it's already in us. Everything below is an attempt to understand that system well enough to build it.
 
@@ -20,7 +20,7 @@ The first mistake is to model "reward" as a single scalar. What feels like one t
 
 - **Hypothalamus — drives.** Homeostatic setpoints: hunger, thirst, fatigue, temperature, damage. Bodily, slow, satiable. Pulls you *toward* what you lack.
 - **Pain — nociception.** Acute tissue-damage signalling. Fast, phasic, protective. Pushes you *away*.
-- **Amygdala — the pull.** Attention, beauty, inclination; threat and salience. Pre-verbal, quick.
+- **Amygdala — the pull.** Attention, innate dispositions; threat and salience. Pre-verbal, quick.
 - **Basal ganglia — wanting.** The incentive to pursue. The value system.
 
 The cleanest evidence they're separate is the **wanting ≠ liking** dissociation: you can *want* what you no longer *like* (addiction is exactly that — craving without pleasure). If they were one signal that couldn't happen. So an honest architecture keeps them as distinct modules — and most "intrinsic motivation" work quietly collapses them into one number, which is the very move that fails at scale.
@@ -31,9 +31,9 @@ But not all four do the *guiding*. The **guidance trio is amygdala (the pull) + 
 
 ## 2 · The amygdala is not a good/bad classifier
 
-This is the correction that reorganized the whole project. The amygdala is **not** a labeler that stamps things good or bad. It is the system that biases **attention** (what you notice, what you can't look away from), generates the sense of **beauty** (what draws you in), and produces **inclinations** — the pre-verbal pulls toward and away that you *cannot put into words*.
+This is the correction that reorganized the whole project. The amygdala is **not** a labeler that stamps things good or bad. It is the system that biases **attention** (what you notice, what you can't look away from) and produces our **innate dispositions** — the pre-verbal pulls toward and away that you *cannot put into words*.
 
-That ineffability is not a poetic flourish; it is the engineering problem. Everything we know how to train, we train against a target we can write down — a label, a reward, a number. The amygdala's output is exactly the thing you *can't* write down. There is no label for "the particular way this draws my eye" or "this specific beauty." You cannot build the dataset, so you cannot supervise it. **That is why it is so weird to train** — and why any attempt to stand in a good/bad picture classifier for it is a category error: it captures the *verbalizable shadow* (semantic similarity to affect words) and misses the pull that casts the shadow.
+That ineffability is not a poetic flourish; it is the engineering problem. Everything we know how to train, we train against a target we can write down — a label, a reward, a number. The amygdala's output is exactly the thing you *can't* write down. There is no label for "the particular way this draws my eye" or "this specific draw." You cannot build the dataset, so you cannot supervise it. **That is why it is so weird to train** — and why any attempt to stand in a good/bad picture classifier for it is a category error: it captures the *verbalizable shadow* (semantic similarity to affect words) and misses the pull that casts the shadow.
 
 It also sharpens where the difficulty lives. The amygdala has a *perceptual* face (the pull you feel about what's in front of you) and an *anticipatory* face ("does this lead somewhere I'm drawn to"). The anticipatory face is literally a value function — expected future pull, discounted — which means it is about **your own lived consequences**, a life nothing has recorded. So neither face has a clean shortcut: the perceptual face is ineffable, the anticipatory face is unlived. The amygdala is the wall.
 
@@ -45,7 +45,7 @@ If the target is unverbalizable, where can grounding come from at all? Only from
 
 1. **Your own body.** Wire feeling to physiology — pleasure/pain, approach/withdraw, autonomic state. Authentic, and the most data-hungry: it needs a body living a life.
 2. **Others', recorded.** Affect-labelled physiology (EEG/EDA/HR + ratings). Someone else felt it and wrote down a coarse projection of it.
-3. **Humanity's record, compressed.** Pretrained models — the internet is partly a vast log of what humans found beautiful, threatening, dear. But it's the *verbalizable shadow* again, not the pull.
+3. **Humanity's record, compressed.** Pretrained models — the internet is partly a vast log of what humans were drawn to, found threatening, held dear. But it's the *verbalizable shadow* again, not the pull.
 
 What you cannot do is shape an amygdala on an **invented task** with a made-up reward — with no felt good/bad behind it you've just built a task's reward model and called it a feeling. This is the deep reason a *reality-shaped* felt system demands a *reality-embodied* agent: the grounding has to come from something real, and a toy has nowhere real to point. It is also why each person's amygdala differs and leads them down different lives — tap #1 is a different life for each of us.
 
@@ -79,7 +79,7 @@ This holds for **every channel, not just vision**: imagined *sights* and imagine
 
 ## 5 · Habituation — anti-wireheading that *becomes* curiosity
 
-A reward-maximizer handed a button presses it forever. That is the correct behavior for "maximize reward," which is why "maximize reward" is the wrong objective for an open-world agent. Feeling doesn't work that way: stare at one beautiful thing and the feeling fades (sensory-specific satiety).
+A reward-maximizer handed a button presses it forever. That is the correct behavior for "maximize reward," which is why "maximize reward" is the wrong objective for an open-world agent. Feeling doesn't work that way: stare at one pleasing thing and the feeling fades (sensory-specific satiety).
 
 Make that the mechanism — pleasure decays with repetition and recovers slowly — and two things happen at once: **single-stimulus wireheading is blocked** (you can't sit on the best stimulus; it stops being best the moment you sit on it) and **curiosity appears for free** ("seek good" becomes "seek *new* good"). It's a bias, not a guarantee — a determined agent could still time-share satiated sources or learn to pace stimulation; habituation pushes toward variety, it doesn't prove it. Crucially the curiosity *emerges from the affect dynamics* rather than being a separate novelty bonus bolted on. This is the one piece that might be genuinely novel as RL — and the honest status is "promising, untested at the scale where it would matter."
 
@@ -127,7 +127,7 @@ Two things already do this: humans are one-shot *as adults*, because a childhood
 
 ## 9 · Why small scale tells you nothing — and where the real claim lives
 
-Everything above collapses to standard RL when the world is small, and this is not a disappointment — it's predicted by the thesis. The amygdala is attention/beauty/inclination *over a rich perceptual world*; give it a toy with three states and there is nothing to be drawn to, so it degenerates into a plain reward. The value system only has to be *developed* when horizons are long and signal sparse; in a toy any dense signal grows it directly. Habituation over a few states is a novelty bonus; imagination in a tiny known world is MPC. Each distinctive organ *is* its standard-RL equivalent at small scale — because at small scale a written reward still suffices, and the felt system is precisely the thing you only reach for when the written reward runs out.
+Everything above collapses to standard RL when the world is small, and this is not a disappointment — it's predicted by the thesis. The amygdala is attention and innate dispositions *over a rich perceptual world*; give it a toy with three states and there is nothing to be drawn to, so it degenerates into a plain reward. The value system only has to be *developed* when horizons are long and signal sparse; in a toy any dense signal grows it directly. Habituation over a few states is a novelty bonus; imagination in a tiny known world is MPC. Each distinctive organ *is* its standard-RL equivalent at small scale — because at small scale a written reward still suffices, and the felt system is precisely the thing you only reach for when the written reward runs out.
 
 So a toy positive is almost certainly an artifact and a toy null is exactly what's expected; either way, uninformative. **The real claim lives only at scale**, and to keep it honest it has to make a divergence prediction: at sufficient richness a felt agent should keep developing and exploring with **no external reward** (where standard RL stalls) and refuse to wirehead, pursuing open-ended variety (where a reward-maximizer collapses). That is the line that, if it failed at adequate scale, would falsify the thesis. Holding the claim honestly means owning that burden rather than hiding behind "it only works at scale."
 

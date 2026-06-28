@@ -78,7 +78,7 @@ This is the only genuinely new engineering; everything else is integration of kn
 
 ## Honest caveats
 
-- **The backbone is proven; the felt system is not.** This design borrows a working stack and stakes everything on the felt module attached to it. The hard parts have no shortcut: the amygdala's target is *ineffable* (you can't label beauty, so you can't supervise it) and the value system is an *unlived life* (no dataset holds this body's future). Those are carried over from the root thesis unchanged — naming the bet, not hiding it.
+- **The backbone is proven; the felt system is not.** This design borrows a working stack and stakes everything on the felt module attached to it. The hard parts have no shortcut: the amygdala's target is *ineffable* (you can't label an innate disposition, so you can't supervise it) and the value system is an *unlived life* (no dataset holds this body's future). Those are carried over from the root thesis unchanged — naming the bet, not hiding it.
 - **It can't be validated small.** At toy scale the felt system collapses into standard RL; only a real body in a rich world can show the divergence the thesis predicts (open-ended development with no external reward; refusal to wirehead).
 - **It is hard to falsify — the deepest caveat.** That divergence prediction is the honest falsification target, but the "it just needs more life/scale" escape hatch means almost any failure can be blamed on insufficient embodiment rather than a wrong idea. This design bets on a hypothesis that resists clean testing — one to be lived and observed more than proven. Naming that is part of the honesty, not a hole in it.
 - **The numbers are illustrative.** Param allocations and control rates are reasoned design choices, not measured optima.
