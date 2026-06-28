@@ -86,4 +86,4 @@ This is the only genuinely new engineering; everything else is integration of kn
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](../LICENSE).
