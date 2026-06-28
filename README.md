@@ -56,7 +56,7 @@ This is the same shape as the thesis itself: the felt system is invisible until 
 
 A multimodal embodied agent that hears, touches, and sees, is moved by **feeling**, and acts through movement and voice:
 
-- **`borrowed`** — perception (vision/audio/touch encoders), a multimodal trunk with memory, and a diffusion/flow action expert. These are **methods proven in GR00T / π0, assembled into our unified world-model cortex** (one co-trained model that *predicts and acts* over a shared latent `z_t`). The borrowed VLA trunk is the **v1 shortcut** — see below. Use what works.
+- **`borrowed`** — perception (vision/audio/touch encoders), a multimodal trunk with memory, and a diffusion/flow action expert. These are **methods proven in GR00T / π0 / OpenVLA, assembled into our unified world-model cortex** (one co-trained model that *predicts and acts* over a shared latent `z_t`). The borrowed VLA trunk is the **v1 shortcut** — see below. Use what works.
 - **the felt system** — the guiding principle, instantiated. The **guidance trio** does the steering: the **amygdala** (the ineffable pull — attention, beauty, inclination), the **basal ganglia** (the value system — what to pursue), and **pain** (the protective floor). Around them: **habituation** (reward fades, so the agent seeks variety rather than wireheading), **imagination** (feel imagined futures — visual *and* audio), and the **hypothalamus** (drives) demoted to bodily maintenance, not guidance.
 - **the wall** — the two parts with no shortcut: the amygdala's target is *ineffable* (you can't label beauty, so you can't supervise it) and the value system is an *unlived life* (no dataset holds your future).
 

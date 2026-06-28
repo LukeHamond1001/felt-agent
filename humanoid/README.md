@@ -1,6 +1,6 @@
 # this humanoid spec
 
-**A complete design for a ~200B-parameter humanoid: today's best robot-foundation-model backbone, with the [root thesis (../)](../README.md) felt system attached as a separate module reading `z_t` — the thing that decides what to *want*.**
+**A complete design for a ~200B-parameter humanoid: today's best robot-foundation-model backbone, with the [root thesis](../README.md) felt system attached as a separate module reading `z_t` — the thing that decides what to *want*.**
 
 > **This is the v1 de-risked path toward a unified world-model cortex.** The *target* is **one unified world-model-centric cortex** — a single co-trained model that predicts *and* acts, sharing one latent `z_t` (the thesis). This spec is the **pragmatic v1 bootstrap toward it**: borrow a frontier VLM-VLA trunk and run a **separate ~30B world model as an interim measure, precisely because today's borrowed trunks are not self-predictive**; as the trunk line goes self-predictive (JEPA/Cosmos), that world model folds into the cortex and the stack converges to the target. (The LLM is **rejected as the sensorimotor cortex** but **accepted as a deliberation tier above it** — the Tier-0 orchestrator in [ARCHITECTURE.md §2](ARCHITECTURE.md#2--the-backbone--a-tiered-vla-borrowed).)
 

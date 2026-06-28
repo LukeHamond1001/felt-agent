@@ -1,6 +1,6 @@
 # Architecture — this humanoid spec
 
-The full stack, from sensors to actuators, with the felt system attached as a separate module reading `z_t`. Two halves: the **backbone** (borrowed, proven robot-foundation-model technology) and the **felt system** (the bet — the [root thesis (../)](../README.md) guiding principle, embodied).
+The full stack, from sensors to actuators, with the felt system attached as a separate module reading `z_t`. Two halves: the **backbone** (borrowed, proven robot-foundation-model technology) and the **felt system** (the bet — the [root thesis](../README.md) guiding principle, embodied).
 
 ---
 
@@ -75,7 +75,7 @@ This backbone, on its own, is a competent instruction-following humanoid. What i
 
 ---
 
-## 3 · The felt system — the bet (the root thesis (../), embodied)
+## 3 · The felt system — the bet (embodied)
 
 The felt organs sit **above** the backbone. They read the trunk's latent world state (and interoception) and produce the agent's own objective. They are separate modules on purpose — collapsing them into one scalar reward is the standard-RL move this whole project argues against. **The *guidance* is a trio — amygdala (the pull) + basal ganglia (value) + pain (the floor).** The hypothalamus is demoted to maintenance.
 
@@ -103,7 +103,7 @@ The heart, and the wall. Reads the trunk's latent state and produces **attention
 ### Threat / cortisol and NE / uncertainty — the felt signal is several systems (G5)
 Feeling is not one scalar — it is several systems running at once (the thesis is explicit that the felt signal is a *trio* plus modulators, not a single reward). Beyond the amygdala's fast pull, two slower neuromodulatory channels enter the felt signal and its scalarization:
 
-- **Threat / cortisol — a graded, slow stress channel.** A **graded** threat estimate (not the binary pain reflex) integrated into a slow stress level. Model it as a **slow low-pass of `relu(−valence)`** — i.e. cortisol accumulates from the *negative* part of the amygdala's valence over time and decays slowly, so sustained aversive context raises a tonic stress that a single bad moment does not. This is the standard "fast affect vs. slow stress hormone" split: the amygdala spikes, cortisol is the smoothed, lingering shadow of repeated negative pull. High cortisol biases the scalarization toward caution/avoidance and (per the root thesis (../) spec) toward **exploration when stalled** — a stall-breaking drive, not just a damper. The low-pass time constant and the cortisol weight in the scalarization are starting points to tune.
+- **Threat / cortisol — a graded, slow stress channel.** A **graded** threat estimate (not the binary pain reflex) integrated into a slow stress level. Model it as a **slow low-pass of `relu(−valence)`** — i.e. cortisol accumulates from the *negative* part of the amygdala's valence over time and decays slowly, so sustained aversive context raises a tonic stress that a single bad moment does not. This is the standard "fast affect vs. slow stress hormone" split: the amygdala spikes, cortisol is the smoothed, lingering shadow of repeated negative pull. High cortisol biases the scalarization toward caution/avoidance and (per the root-thesis spec) toward **exploration when stalled** — a stall-breaking drive, not just a damper. The low-pass time constant and the cortisol weight in the scalarization are starting points to tune.
 - **NE / uncertainty — a precision/arousal channel.** A norepinephrine-style channel carrying **uncertainty / surprise** (model-prediction error, value-ensemble disagreement, novelty). It does not add valence; it **modulates gain** — raising it sharpens attention and learning rate under surprise (and feeds the orienting reflex in PERCEPTION-ACTION §1–2, where novelty pulls gaze). It also feeds epistemic action (imagine-and-feel over *where to look* — PERCEPTION-ACTION §3). NE is the precision knob on the felt signal, not a term added to it.
 
 These are consistent with "feeling is several systems": the amygdala sets direction, cortisol sets a slow protective tone, NE sets the gain. All three feed the scalarization in §4; none collapses the others into a single reward.
