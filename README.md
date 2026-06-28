@@ -22,7 +22,7 @@ The bigger and more open the environment, the less anyone knows what the reward 
 
 Except one. And it isn't in our equations — it's inside us.
 
-A human moves through an environment of incomprehensible complexity with no reward function anywhere. What guides us is **internal feeling** — our **natural inclinations**, the ones we can't put into words; hunger, pain, care; what draws us in and what we recoil from. That felt system is the only working solution to open-world agency that we know exists. Evolution arrived at it precisely because nothing else *could* be specified — and it runs, fully operational, inside every person.
+A human moves through an environment of incomprehensible complexity with no reward function anywhere. What guides us is **internal feeling** — our **natural inclinations**, the ones we can't put into words; what draws us in and what we recoil from. That felt system is the only working solution to open-world agency that we know exists. Evolution arrived at it precisely because nothing else *could* be specified — and it runs, fully operational, inside every person.
 
 So the bet is simple, and it's a bet about *where the guiding principle comes from*:
 
@@ -47,8 +47,6 @@ There used to be. They're gone, on purpose — and the reason *is* the thesis.
 So the distinctiveness is not an algorithm you flip on in a gridworld. It's a property that *only has room to exist* when the world is big enough for affect to have structure to latch onto, horizons long enough that value must be earned, and tasks open-ended enough that variety matters. Test it small and you are, by construction, measuring standard RL in an amygdala costume. A toy *positive* is almost certainly an artifact; a toy *null* is exactly what the thesis predicts. **Either way it tells you nothing** — which is why shipping toy "validation" would be dishonest. The only informative test is going all out.
 
 This is the same shape as the thesis itself: the felt system is invisible until the environment is complex enough to need it, because for simple environments a written reward already suffices. You don't reach for the thing inside us until the thing we can write runs out — and it runs out exactly at the scale where you can't run a clean experiment on a laptop.
-
-**And you can't sidestep this by training one on a *different*, simpler reality.** The felt system is not a generic reward function — it is **adapted to *this* reality over evolutionary and developmental time**, shaped by and for the specific world it grew up in. A toy or man-made environment isn't a smaller version of the right test; it's the *wrong world* — the amygdala has nothing to be drawn to there because it was never adapted to it. And the dependence runs the other way too: **everything humankind does flows *from* this felt system** — our art, our tools, the very environments we build — so any world we could construct to test it is itself a *product of* the real-world-adapted amygdala, and therefore *encompassed by* the reality that amygdala already spans. Our little man-made worlds are a tiny subset of what the felt system reaches; a subset can't reveal the system that generated it. The only environment rich enough to evaluate it is the one it was adapted to — reality itself.
 
 ---
 
