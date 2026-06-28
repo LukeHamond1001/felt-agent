@@ -20,7 +20,7 @@ The first mistake is to model "reward" as a single scalar. What feels like one t
 
 - **Hypothalamus — drives.** Homeostatic setpoints: hunger, thirst, fatigue, temperature, damage. Bodily, slow, satiable. Pulls you *toward* what you lack.
 - **Pain — nociception.** Acute tissue-damage signalling. Fast, phasic, protective. Pushes you *away*.
-- **Amygdala — the pull.** Attention, innate dispositions; threat and salience. Pre-verbal, quick.
+- **Amygdala — the pull.** Innate dispositions — what draws you, and so what gets your attention and for how long; threat and salience. Pre-verbal, quick.
 - **Basal ganglia — wanting.** The incentive to pursue. The value system.
 
 The cleanest evidence they're separate is the **wanting ≠ liking** dissociation: you can *want* what you no longer *like* (addiction is exactly that — craving without pleasure). If they were one signal that couldn't happen. So an honest architecture keeps them as distinct modules — and most "intrinsic motivation" work quietly collapses them into one number, which is the very move that fails at scale.
@@ -31,7 +31,7 @@ But not all four do the *guiding*. The **guidance trio is amygdala (the pull) + 
 
 ## 2 · The amygdala is not a good/bad classifier
 
-This is the correction that reorganized the whole project. The amygdala is **not** a labeler that stamps things good or bad. It is the system that biases **attention** (what you notice, what you can't look away from) and produces our **innate dispositions** — the pre-verbal pulls toward and away that you *cannot put into words*.
+This is the correction that reorganized the whole project. The amygdala is **not** a labeler that stamps things good or bad. It is the system of our **innate dispositions** — the pre-verbal pulls toward and away that you *cannot put into words* — and so it is what governs **attention**: what you notice, what you can't look away from, and how long it holds you.
 
 That ineffability is not a poetic flourish; it is the engineering problem. Everything we know how to train, we train against a target we can write down — a label, a reward, a number. The amygdala's output is exactly the thing you *can't* write down. There is no label for "the particular way this draws my eye" or "this specific draw." You cannot build the dataset, so you cannot supervise it. **That is why it is so weird to train** — and why any attempt to stand in a good/bad picture classifier for it is a category error: it captures the *verbalizable shadow* (semantic similarity to affect words) and misses the pull that casts the shadow.
 
@@ -127,7 +127,7 @@ Two things already do this: humans are one-shot *as adults*, because a childhood
 
 ## 9 · Why small scale tells you nothing — and where the real claim lives
 
-Everything above collapses to standard RL when the world is small, and this is not a disappointment — it's predicted by the thesis. The amygdala is attention and innate dispositions *over a rich perceptual world*; give it a toy with three states and there is nothing to be drawn to, so it degenerates into a plain reward. The value system only has to be *developed* when horizons are long and signal sparse; in a toy any dense signal grows it directly. Habituation over a few states is a novelty bonus; imagination in a tiny known world is MPC. Each distinctive organ *is* its standard-RL equivalent at small scale — because at small scale a written reward still suffices, and the felt system is precisely the thing you only reach for when the written reward runs out.
+Everything above collapses to standard RL when the world is small, and this is not a disappointment — it's predicted by the thesis. The amygdala is our innate dispositions *over a rich perceptual world* (what we're drawn to, and so what we attend to); give it a toy with three states and there is nothing to be drawn to, so it degenerates into a plain reward. The value system only has to be *developed* when horizons are long and signal sparse; in a toy any dense signal grows it directly. Habituation over a few states is a novelty bonus; imagination in a tiny known world is MPC. Each distinctive organ *is* its standard-RL equivalent at small scale — because at small scale a written reward still suffices, and the felt system is precisely the thing you only reach for when the written reward runs out.
 
 So a toy positive is almost certainly an artifact and a toy null is exactly what's expected; either way, uninformative. **The real claim lives only at scale**, and to keep it honest it has to make a divergence prediction: at sufficient richness a felt agent should keep developing and exploring with **no external reward** (where standard RL stalls) and refuse to wirehead, pursuing open-ended variety (where a reward-maximizer collapses). That is the line that, if it failed at adequate scale, would falsify the thesis. Holding the claim honestly means owning that burden rather than hiding behind "it only works at scale."
 
