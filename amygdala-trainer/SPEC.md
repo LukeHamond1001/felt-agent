@@ -76,8 +76,12 @@ The shadow head output (the pull) → the **felt signal (reward)** → the **val
 2. React **honestly and continuously** — track the moment-to-moment pull *and its intensity*, including rise and fall.
 3. Prefer **rich, affect-laden, diverse** stimuli (film, music, real scenes); many short sessions across varied content > one long run.
 4. Use the timeline to **review and re-mark** anything you got wrong.
-5. **Self-consistency first (consistency check):** re-annotate the same clip on another day, then compute **test–retest CCC** between the two traces. Treat a **low retest CCC as "not learnable"** — if you can't reproduce your *own* trace, the head can't be expected to, and the held-out fit is untrustworthy. Run this *before* trusting any head. (Optional `--consistency` mode noted in `train_amygdala.py`.)
-6. (Optional, external) record physiology separately and align by timestamp — kept outside the tool by design.
+5. **Self-consistency first (consistency check):** re-annotate the same clip on another day, then compute **test–retest CCC** between the two traces. Treat a **low retest CCC as "not learnable"** — if you can't reproduce your *own* trace, the head can't be expected to, and the held-out fit is untrustworthy. Run this *before* trusting any head:
+   ```bash
+   python train_amygdala.py --consistency a1.json a2.json
+   ```
+   (Prints test–retest CCC + Pearson and exits; no training. CCC ≈ 0 = not learnable.)
+6. (Optional, external) record physiology separately and align by timestamp — kept outside the tool by design. **Paired physiology is a future validation aid, not part of the v1 grounding signal:** the felt report is the only instrument v1 trains on; physiology, if recorded, is for *later* cross-checking that the report tracks measured arousal, not an anchor the head is fit against.
 
 ## Honest caveats
 - **Shadow only** — a signed-valence projection of the pull, not the full ineffable pull (the wall).

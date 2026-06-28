@@ -1,4 +1,4 @@
-# Concepts — the thinking behind vision-brain
+# Concepts — the thinking behind this repo / the root thesis
 
 The long-form version of the ideas behind the [thesis](README.md). A research notebook, not a paper: it follows the questions that actually drove the project.
 
@@ -57,7 +57,7 @@ Coarse labels (tap #3) only give the shadow. To seed the pull at the highest fid
 - **Clean conditions.** No interruptions, full focus, a calm baseline-neutral mind, so the readings start from zero and the dynamics are legible.
 - **Rich natural stimulus.** They watch video or listen to audio — real, affect-laden content, not toy stimuli.
 - **Sub-frame-by-sub-frame mapping.** They annotate intrinsic emotion at fine temporal grain — not "this clip felt good" but the *moment-to-moment trajectory* of the pull and its rise and fall.
-- **Paired physiology.** Record the body at the same time (EDA, HRV, pupil, EEG, cortisol proxies) so the felt report is anchored to *measured* neuromodulator dynamics, not words alone.
+- **Paired physiology (a future validation aid, not the v1 grounding signal).** You *can* record the body at the same time (EDA, HRV, pupil, EEG, cortisol proxies) — but treat it as a *later* cross-check that the felt report tracks measured arousal, **not** an anchor the head is fit against. In v1 the felt report is the only instrument; physiology is optional, external, and validation-only.
 
 The output is a dense affect-*trajectory* — the closest thing to a real grounding signal there is. **Honest caveat:** even this only seeds the shadow *richly*; the truly ineffable pull is still the wall, earned by the agent living (§4 onward). And it inherits one person's affect — a feature (authentic) and a limit (subjective, single-source).
 
@@ -104,6 +104,8 @@ The obvious-seeming design — slam a flood of dopamine for good and a blast of 
 - **They're opponent processes you weigh.** Reward vs threat is a constant comparison; two saturating blasts can't be weighed against each other, graded signals can.
 
 So feeling is graded, dynamic, prediction-error-based, and adapting because that is what makes it a system that *learns, ranks, anticipates, and survives*. The architecture already has the core right — **dopamine = TD error = RPE**; the lesson is to make the threat/cortisol channel graded-and-dynamic too, and keep the whole felt signal relative/adapting (habituation already does this for pleasure).
+
+One more modulator belongs here, and it is **not** another reward term: **norepinephrine = uncertainty as a gain/precision knob.** Driven by the agent's own surprise — `NE ← ema(prediction_error + ensemble_disagreement + novelty(z_t))` — it scales *how much the existing signals count* and how fast the agent learns from them (attend hard and write fast when the world is surprising or the world model disagrees with itself; coast when it's predictable). It is a multiplier on the signal and the learning rate, never an additive value of its own — which is exactly what keeps it from collapsing into "just more reward."
 
 ---
 

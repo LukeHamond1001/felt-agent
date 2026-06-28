@@ -1,11 +1,13 @@
-# humanoid-vision
+# this humanoid spec
 
-**A complete design for a ~200B-parameter humanoid: today's best robot-foundation-model backbone, with the [vision-brain](../README.md) felt system bolted on as the thing that decides what to *want*.**
+**A complete design for a ~200B-parameter humanoid: today's best robot-foundation-model backbone, with the [root thesis (../)](../README.md) felt system attached as a separate module reading `z_t` — the thing that decides what to *want*.**
+
+> **This is the v1 de-risked path toward a unified world-model cortex.** The *target* is **one unified world-model-centric cortex** — a single co-trained model that predicts *and* acts, sharing one latent `z_t` (the thesis). This spec is the **pragmatic v1 bootstrap toward it**: borrow a frontier VLM-VLA trunk and run a **separate ~30B world model as an interim measure, precisely because today's borrowed trunks are not self-predictive**; as the trunk line goes self-predictive (JEPA/Cosmos), that world model folds into the cortex and the stack converges to the target. (The LLM is **rejected as the sensorimotor cortex** but **accepted as a deliberation tier above it** — the Tier-0 orchestrator in [ARCHITECTURE.md §2](ARCHITECTURE.md#2--the-backbone--a-tiered-vla-borrowed).)
 
 The backbone is proven and borrowed. The felt system is the bet. The split is the whole point:
 
 - **The backbone** (vision-language-action foundation model) gives the body *competence* — it perceives, understands instructions, and produces skilled whole-body motion. This is real, working technology (GR00T, π0, Helix-class systems). Use it.
-- **The felt system** is designed to *enable* autonomy — to be what the body pursues when the instructions run out and there is no reward to hand it. Whether this design succeeds is the central bet. This is the [thesis](../README.md): for open-ended embodied life there is no reward anyone can write, and the only known guiding principle is human internal feeling. So we build that, and bolt it on top.
+- **The felt system** is designed to *enable* autonomy — to be what the body pursues when the instructions run out and there is no reward to hand it. Whether this design succeeds is the central bet. This is the [thesis](../README.md): for open-ended embodied life there is no reward anyone can write, and the only known guiding principle is human internal feeling. So we build that, and **attach it as a separate module reading the trunk's latent `z_t`** on top.
 
 A humanoid is the *right* body for this, because the felt system can only be grounded in felt reality — and only an embodied agent living a real life has anywhere real to point.
 
@@ -63,7 +65,7 @@ The felt system maps cleanly onto the hierarchy: **pain is the fastest loop** (a
 
 ---
 
-## How the felt system bolts on
+## How the felt system attaches (a separate module reading `z_t`)
 
 This is the only genuinely new engineering; everything else is integration of known parts.
 
@@ -76,7 +78,7 @@ This is the only genuinely new engineering; everything else is integration of kn
 
 ## Honest caveats
 
-- **The backbone is proven; the felt system is not.** This design borrows a working stack and stakes everything on the bolt-on. The hard parts have no shortcut: the amygdala's target is *ineffable* (you can't label beauty, so you can't supervise it) and the value system is an *unlived life* (no dataset holds this body's future). Those are carried over from vision-brain unchanged — naming the bet, not hiding it.
+- **The backbone is proven; the felt system is not.** This design borrows a working stack and stakes everything on the felt module attached to it. The hard parts have no shortcut: the amygdala's target is *ineffable* (you can't label beauty, so you can't supervise it) and the value system is an *unlived life* (no dataset holds this body's future). Those are carried over from the root thesis unchanged — naming the bet, not hiding it.
 - **It can't be validated small.** At toy scale the felt system collapses into standard RL; only a real body in a rich world can show the divergence the thesis predicts (open-ended development with no external reward; refusal to wirehead).
 - **It is hard to falsify — the deepest caveat.** That divergence prediction is the honest falsification target, but the "it just needs more life/scale" escape hatch means almost any failure can be blamed on insufficient embodiment rather than a wrong idea. This design bets on a hypothesis that resists clean testing — one to be lived and observed more than proven. Naming that is part of the honesty, not a hole in it.
 - **The numbers are illustrative.** Param allocations and control rates are reasoned design choices, not measured optima.

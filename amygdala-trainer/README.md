@@ -15,7 +15,11 @@ Ground the **amygdala shadow** from one emotionally-attuned person's continuous 
    python train_amygdala.py --media clip.mp4 --annotation annotation_clip_*.json --out amygdala_shadow.pt
    ```
    Sweep `--reaction_lag_ms 0..600` and keep the lag with the best held-out CCC.
-3. **Check yourself first.** Re-annotate the same clip on another day, compute test–retest CCC; if you can't reproduce your own trace, treat the head as **not learnable** before trusting it (self-consistency before generalization).
+3. **Check yourself first.** Re-annotate the same clip on another day, then run the self-consistency gate:
+   ```bash
+   python train_amygdala.py --consistency a1.json a2.json
+   ```
+   It prints test–retest CCC + Pearson and exits (no training). If you can't reproduce your own trace (CCC ≈ 0), treat the head as **not learnable** before trusting it (self-consistency before generalization).
 
 Output: `amygdala_shadow.pt` (the thin valence head) + `report.json` (held-out Pearson/CCC).
 

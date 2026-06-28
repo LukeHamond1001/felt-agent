@@ -2,11 +2,13 @@
 
 **A bet about how agents will have to be guided once the world gets too big to write a reward for.**
 
-> **What this is:** a *world-model-centric* agent — the research/future frontier (Dreamer / V-JEPA 2-AC / Cosmos lineage) — with a **felt system** (a grounded amygdala + value + pain) as its *self-generated* reward, which no frontier lab builds. Borrowed, de-risked backbone; all the originality in the felt layer. Where this sits on the frontier, and every "why not X," is in **[DECISIONS.md](DECISIONS.md)**.
+> **What this is:** a *world-model-centric* agent — the research/future frontier (Dreamer / V-JEPA 2-AC / Cosmos lineage) — with a **felt system** (a grounded amygdala + value + pain) as its *self-generated* reward, which no frontier lab builds. Borrowed, de-risked backbone; all the originality in the felt layer.
+>
+> **Target vs. v1.** The *target* backbone is **one unified world-model-centric cortex** — a single co-trained model that predicts *and* acts over a shared latent `z_t`. That is the thesis. The **[humanoid/](humanoid/)** spec is the pragmatic **v1 path toward it**: it borrows a frontier VLM-VLA trunk (the deployed-frontier shortcut) with a **separate ~30B world model** as an *interim* measure — precisely because today's borrowed trunks are not self-predictive. As trunks move to self-predictive (the JEPA / Cosmos line), that separate world model **folds back into the cortex** and v1 converges to the target. Read humanoid as "v1 path toward the unified cortex," not "the backbone, full stop."
 
 ### Repository map
 - **[README.md](README.md)** (the thesis) · **[CONCEPTS.md](CONCEPTS.md)** (the deep ideas) · **[ARCHITECTURE.md](ARCHITECTURE.md)** (the felt-system / brain design)
-- **[BUILD.md](BUILD.md)** (step-by-step build recipe) · **[DECISIONS.md](DECISIONS.md)** (frontier positioning + why-not-X)
+- **[BUILD.md](BUILD.md)** (step-by-step build recipe)
 - **[humanoid/](humanoid/)** — the ~200B embodied instantiation: [architecture](humanoid/ARCHITECTURE.md) · [training](humanoid/TRAINING.md) · [perception-action](humanoid/PERCEPTION-ACTION.md)
 - **[amygdala-trainer/](amygdala-trainer/)** — the runnable tool to start grounding the amygdala from your own felt affect
 
@@ -52,9 +54,11 @@ This is the same shape as the thesis itself: the felt system is invisible until 
 
 A multimodal embodied agent that hears, touches, and sees, is moved by **feeling**, and acts through movement and voice:
 
-- **`borrowed`** — perception (vision/audio/touch encoders), a multimodal trunk with memory, and a diffusion/flow action expert. This is the standard VLA backbone (GR00T, π0). Use what works.
+- **`borrowed`** — perception (vision/audio/touch encoders), a multimodal trunk with memory, and a diffusion/flow action expert. These are **methods proven in GR00T / π0, assembled into our unified world-model cortex** (one co-trained model that *predicts and acts* over a shared latent `z_t`). The borrowed VLA trunk is the **v1 shortcut** — see below. Use what works.
 - **the felt system** — the guiding principle, instantiated. The **guidance trio** does the steering: the **amygdala** (the ineffable pull — attention, beauty, inclination), the **basal ganglia** (the value system — what to pursue), and **pain** (the protective floor). Around them: **habituation** (reward fades, so the agent seeks variety rather than wireheading), **imagination** (feel imagined futures — visual *and* audio), and the **hypothalamus** (drives) demoted to bodily maintenance, not guidance.
 - **the wall** — the two parts with no shortcut: the amygdala's target is *ineffable* (you can't label beauty, so you can't supervise it) and the value system is an *unlived life* (no dataset holds your future).
+
+The **LLM is rejected as the sensorimotor skeleton/cortex** — a text-pretrained representation is *descriptive*, not dynamics-predictive, so it cannot be the predict-and-act backbone. It is **accepted as a deliberation tier *above* the cortex**: an NL-reasoning orchestrator that decomposes tasks and narrates a legible plan, calling the cortex/controller as a tool. So "LLM rejected" and "NL-reasoning orchestrator" are not in tension — rejected *as the skeleton*, kept *as the tier on top*.
 
 Full design in **[ARCHITECTURE.md](ARCHITECTURE.md)**. The thinking behind each piece — and why human feeling is the right thing to copy — in **[CONCEPTS.md](CONCEPTS.md)**. The concrete, step-by-step recipe for actually building it — organ by organ, with the methods, and honest tags for what's `standard`, what's the `bet`, and what's the `wall` — in **[BUILD.md](BUILD.md)**.
 
