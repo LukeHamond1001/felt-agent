@@ -1,0 +1,6 @@
+numpy
+torch
+open_clip_torch
+opencv-python
+pillow
+librosa  # only for audio annotations

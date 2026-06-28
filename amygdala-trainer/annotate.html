@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Amygdala trainer — affect annotation</title>
+<style>
+  :root{--bg:#0c0d11;--fg:#e9e9ee;--dim:#8a8a96;--dopa:#39d98a;--cort:#ff5a5f;--line:#23242c;--panel:#14151b;}
+  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--fg);font:13px/1.5 -apple-system,system-ui,sans-serif;}
+  .top{display:flex;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .top input[type=text],.top input[type=number]{background:#0c0d11;color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px;width:90px;}
+  .top input[type=text]{width:130px;}
+  button{background:#2a2c36;color:var(--fg);border:1px solid var(--line);border-radius:7px;padding:8px 14px;cursor:pointer;font-weight:600;}
+  button.primary{background:var(--dopa);color:#06281a;border-color:var(--dopa);}
+  button:disabled{opacity:.4;cursor:not-allowed;}
+  .dim{color:var(--dim);} .dopa{color:var(--dopa);} .cort{color:var(--cort);}
+  .main{display:grid;grid-template-columns:1fr 110px;gap:14px;padding:14px;}
+  #video{width:100%;max-height:58vh;background:#000;border-radius:8px;}
+  .barwrap{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;align-items:center;}
+  #bar{width:64px;height:420px;background:#0f1018;border:1px solid var(--line);border-radius:8px;display:block;touch-action:none;cursor:ns-resize;}
+  .barlbl{font-size:11px;margin:6px 0;text-align:center;}
+  .timeline{padding:0 14px 16px;}
+  #tl{width:100%;height:140px;background:var(--panel);border:1px solid var(--line);border-radius:8px;display:block;cursor:pointer;}
+  .axis{display:flex;justify-content:space-between;color:var(--dim);font-size:11px;margin-top:6px;}
+  .readout{font-variant-numeric:tabular-nums;}
+  .hint{color:var(--dim);font-size:12px;}
+  #setup{padding:24px;} .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;max-width:640px;}
+  h1{font-size:16px;margin:0 0 4px;} #app{display:none;}
+</style>
+</head>
+<body>
+<div id="setup">
+  <div class="card">
+    <h1>Amygdala trainer — affect annotation</h1>
+    <p class="dim">One vertical bar = the <b>amygdala's felt pull</b>: drag it <span class="dopa">up = drawn-to</span> or <span class="cort">down = aversive</span>, center = neutral. <b>How far you push = how strongly it pulls</b> (a flicker of interest vs something gorgeous you can't look away from — the intensity *is* attention/beauty); the sign is just toward/away. (This is the felt appraisal you can actually introspect — dopamine and cortisol are downstream signals the agent derives later, not what you label.) Mark continuously as it plays; scrub the timeline to jump back, and drag the bar while paused to tweak that moment. Nothing leaves your machine.</p>
+    <p><input type="file" id="file" accept="video/*,audio/*"/></p>
+    <p class="dim">grounder <input type="text" id="who" value="luke"/> &nbsp; sample Hz <input type="number" id="hz" value="30" min="5" max="60"/></p>
+    <button class="primary" id="load" disabled>Load</button>
+  </div>
+</div>
+
+<div id="app">
+  <div class="top">
+    <button id="play">▶ Play</button>
+    <span class="readout">t <span id="rt">0.0</span>s &nbsp; valence <b id="rv">0.00</b> <span class="dim">(amygdala pull)</span></span>
+    <span class="hint">space = play/pause · <b>hold &amp; drag the bar to mark</b> · release to play it back (bar tracks your curve) · click/drag timeline to seek · paused: drag bar to tweak</span>
+    <span style="flex:1"></span>
+    <button class="primary" id="finish">Finish &amp; export</button>
+  </div>
+  <div class="main">
+    <div><video id="video" playsinline></video></div>
+    <div class="barwrap">
+      <div class="barlbl dopa">good · drawn-to ↑</div>
+      <canvas id="bar" width="64" height="420"></canvas>
+      <div class="barlbl cort">↓ bad · aversive</div>
+    </div>
+  </div>
+  <div class="timeline">
+    <canvas id="tl" width="1400" height="140"></canvas>
+    <div class="axis"><span>0:00</span><span class="dim">waveform · amygdala valence (<span class="dopa">drawn-to</span> / <span class="cort">aversive</span>)</span><span id="dur">0:00</span></div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let url=null,kind='video',hz=30,samples={},wave=null,playing=false,curV=0,tickTimer=null,name='',barDrag=false;
+const V=$('video');
+
+$('file').onchange=e=>{const f=e.target.files[0];if(!f)return;url=URL.createObjectURL(f);kind=f.type.startsWith('audio')?'audio':'video';name=f.name;$('load').disabled=false;$('load')._file=f;};
+$('load').onclick=async()=>{
+  hz=parseInt($('hz').value)||30;$('setup').style.display='none';$('app').style.display='block';
+  V.src=url; if(kind==='audio')V.style.height='40px';
+  await new Promise(r=>{V.onloadedmetadata=r;}); $('dur').textContent=fmt(V.duration);
+  wave=await decodeWave($('load')._file); drawBar(); drawTL();
+};
+function fmt(s){s=s||0;const m=Math.floor(s/60),x=Math.floor(s%60);return m+':'+String(x).padStart(2,'0');}
+async function decodeWave(file){try{
+  const buf=await file.arrayBuffer();const ac=new(window.AudioContext||window.webkitAudioContext)();const ab=await ac.decodeAudioData(buf);
+  const ch=ab.getChannelData(0),N=1400,block=Math.floor(ch.length/N),peaks=new Float32Array(N);
+  for(let i=0;i<N;i++){let mx=0;for(let j=0;j<block;j++){const v=Math.abs(ch[i*block+j]||0);if(v>mx)mx=v;}peaks[i]=mx;}return peaks;
+}catch(e){return null;}}
+
+// --- vertical bar: up=+1 drawn-to, down=-1 aversive (amygdala signed pull) ---
+const bar=$('bar'),bctx=bar.getContext('2d');
+function barFromY(ev){const r=bar.getBoundingClientRect();const y=Math.min(1,Math.max(0,(ev.clientY-r.top)/r.height));curV=+(1-2*y).toFixed(3);}
+bar.addEventListener('pointerdown',e=>{barDrag=true;barFromY(e);onMark();});
+bar.addEventListener('pointermove',e=>{if(barDrag){barFromY(e);onMark();}});
+window.addEventListener('pointerup',()=>barDrag=false);
+function onMark(){ if(!playing){ writeSample(V.currentTime); } updateReadout(curV); drawBar(); drawTL(); } // paused-drag = tweak current point
+function drawBar(){
+  const W=bar.width,H=bar.height,mid=H/2;bctx.clearRect(0,0,W,H);
+  bctx.strokeStyle='#2b2d38';bctx.beginPath();bctx.moveTo(0,mid);bctx.lineTo(W,mid);bctx.stroke();
+  const y=(1-(curV+1)/2)*H;
+  bctx.fillStyle=curV>=0?'rgba(57,217,138,.35)':'rgba(255,90,95,.35)';
+  if(curV>=0)bctx.fillRect(0,y,W,mid-y); else bctx.fillRect(0,mid,W,y-mid);
+  bctx.fillStyle=curV>=0?'#39d98a':'#ff5a5f';bctx.fillRect(0,y-2,W,4);
+}
+
+function writeSample(t){const b=Math.round(t*hz);samples[b]={t:+t.toFixed(3),valence:curV};}  // amygdala felt pull: up=+ drawn-to (intensity), down=- aversive
+function updateReadout(v){$('rv').textContent=v.toFixed(2);$('rt').textContent=(V.currentTime||0).toFixed(1);}
+
+// --- playback ---
+$('play').onclick=()=>togglePlay();
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&$('app').style.display==='block'){e.preventDefault();togglePlay();}});
+function togglePlay(){if(V.paused){V.play();playing=true;$('play').textContent='⏸ Pause';startTick();}else{V.pause();playing=false;$('play').textContent='▶ Play';clearInterval(tickTimer);}}
+function startTick(){clearInterval(tickTimer);tickTimer=setInterval(()=>{
+  if(V.paused||V.ended)return;
+  if(barDrag){ writeSample(V.currentTime); }                                  // holding the bar = record/overwrite this moment
+  else { const s=nearest(Math.round(V.currentTime*hz)); if(s) curV=s.valence; } // hands off = review: bar TRACKS the recorded curve, no overwrite
+  updateReadout(curV); drawBar(); drawTL();
+},1000/hz);}
+V.onended=()=>{playing=false;$('play').textContent='▶ Play';clearInterval(tickTimer);};
+
+// --- timeline: waveform + single affect curve (green up / red down) + playhead ---
+const tl=$('tl'),tctx=tl.getContext('2d');let scrub=false;
+tl.addEventListener('pointerdown',e=>{scrub=true;seekFrom(e);});tl.addEventListener('pointermove',e=>{if(scrub)seekFrom(e);});window.addEventListener('pointerup',()=>scrub=false);
+function seekFrom(e){const r=tl.getBoundingClientRect();const f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));V.currentTime=f*(V.duration||0);const s=nearest(Math.round(V.currentTime*hz));if(s){curV=s.valence;}updateReadout(curV);drawBar();drawTL();}
+function nearest(b){for(let d=0;d<hz*3;d++){if(samples[b+d])return samples[b+d];if(samples[b-d])return samples[b-d];}return null;}
+function drawTL(){
+  const W=tl.width,H=tl.height,mid=H/2;tctx.clearRect(0,0,W,H);
+  if(wave){tctx.fillStyle='#26283200';tctx.fillStyle='#262832';for(let i=0;i<wave.length;i++){const h=wave[i]*(H*0.42);tctx.fillRect(i*(W/wave.length),mid-h/2,Math.max(1,W/wave.length),h);}}
+  tctx.strokeStyle='#2b2d38';tctx.beginPath();tctx.moveTo(0,mid);tctx.lineTo(W,mid);tctx.stroke();
+  const dur=V.duration||1,keys=Object.keys(samples).map(Number).sort((a,b)=>a-b);
+  tctx.lineWidth=2;let started=false;
+  for(const b of keys){const s=samples[b];const x=(s.t/dur)*W;const y=mid-(s.valence*0.46*H);tctx.strokeStyle=s.valence>=0?'#39d98a':'#ff5a5f';
+    if(!started){tctx.beginPath();tctx.moveTo(x,y);started=true;}else{tctx.lineTo(x,y);tctx.stroke();tctx.beginPath();tctx.moveTo(x,y);}}
+  const px=((V.currentTime||0)/dur)*W;tctx.strokeStyle='#e9e9ee';tctx.beginPath();tctx.moveTo(px,0);tctx.lineTo(px,H);tctx.stroke();
+}
+V.ontimeupdate=()=>{if(!playing)drawTL();};
+
+$('finish').onclick=()=>{
+  const arr=Object.keys(samples).map(Number).sort((a,b)=>a-b).map(b=>samples[b]);
+  const out={media:name,media_kind:kind,duration_s:+(V.duration||0).toFixed(2),sample_hz:hz,grounder:$('who').value,reaction_lag_ms:0,channels:"amygdala valence: sign=toward/away, magnitude=pull intensity (attention/beauty)",samples:arr,notes:''};
+  const blob=new Blob([JSON.stringify(out,null,1)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='annotation_'+name.replace(/\W+/g,'_')+'_'+arr.length+'.json';a.click();
+  alert('Exported '+arr.length+' samples.');
+};
+</script>
+</body>
+</html>
