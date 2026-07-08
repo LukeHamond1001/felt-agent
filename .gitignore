@@ -1,0 +1,7 @@
+data/
+__pycache__/
+*.pyc
+*.bak
+*.bak[0-9]
+*.log
+.DS_Store

@@ -1,0 +1,35 @@
+{
+  "n_images": 600,
+  "resolutions": {
+    "224": {
+      "zero_shot_auc": 0.9523,
+      "probe_auc_mean": 0.96,
+      "probe_auc_std": 0.0147
+    },
+    "128": {
+      "zero_shot_auc": 0.9498,
+      "probe_auc_mean": 0.9608,
+      "probe_auc_std": 0.0145
+    },
+    "96": {
+      "zero_shot_auc": 0.9523,
+      "probe_auc_mean": 0.9636,
+      "probe_auc_std": 0.0117
+    },
+    "64": {
+      "zero_shot_auc": 0.9497,
+      "probe_auc_mean": 0.9652,
+      "probe_auc_std": 0.0114
+    },
+    "48": {
+      "zero_shot_auc": 0.9443,
+      "probe_auc_mean": 0.9514,
+      "probe_auc_std": 0.0168
+    },
+    "32": {
+      "zero_shot_auc": 0.9344,
+      "probe_auc_mean": 0.9426,
+      "probe_auc_std": 0.0148
+    }
+  }
+}

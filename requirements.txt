@@ -1,0 +1,12 @@
+# felt-agent experiments — Python >= 3.10
+# Core (all experiments)
+torch>=2.3
+numpy>=1.26
+# Amygdala grounding probe + nursery reward heads
+open_clip_torch>=2.24
+datasets>=2.19
+scikit-learn>=1.4
+matplotlib>=3.8
+pillow>=10.0
+# Optional: encoder_swap.py DINOv2 arm
+timm>=1.0

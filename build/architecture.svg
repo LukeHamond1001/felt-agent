@@ -1,0 +1,132 @@
+<svg viewBox="0 0 1180 650" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .title{font-size:25px;font-weight:700;fill:#1b2733}
+    .subtitle{font-size:14px;fill:#5c6b7a}
+    .legend{font-size:12.5px;fill:#42505d}
+    .btitle{font-size:13.5px;font-weight:700;fill:#38424d}
+    .bsub{font-size:11px;fill:#6b7885}
+    .borrowed{font-size:10.5px;font-style:italic;fill:#94a0ab}
+    .header{font-size:13px;font-weight:600;fill:#5c6b7a}
+    .amyg-t{font-size:19px;font-weight:700;fill:#7a4a08}
+    .amyg-s{font-size:13.5px;fill:#7a4a08}
+    .amyg-s2{font-size:12.5px;fill:#93641f}
+    .amyg-i{font-size:12px;font-style:italic;fill:#93641f}
+    .pain-t{font-size:14px;font-weight:700;fill:#38424d}
+    .reward{font-size:15px;font-weight:700;fill:#ffffff}
+    .zt{font-size:13.5px;font-weight:700;fill:#eaf0f5}
+    .zts{font-size:11px;fill:#9db0c0}
+    .alab{font-size:11px;fill:#c07d19;font-weight:600}
+    .barlab{font-size:13px;font-weight:600;fill:#46535f}
+    .borrowedbox{fill:#eef1f5;stroke:#c2ccd6;stroke-width:1.5}
+    .amygbox{fill:#fdeeda;stroke:#e0972a;stroke-width:3}
+    .rewardbox{fill:#e0972a;stroke:#c07d19;stroke-width:1.5}
+    .ztbox{fill:#26313c}
+    .barbox{fill:#e6eaef;stroke:#c8d1da;stroke-width:1.5}
+    .aback{fill:none;stroke:#8b96a2;stroke-width:1.8}
+    .afelt{fill:none;stroke:#e0972a;stroke-width:2.2}
+  </style>
+  <defs>
+    <marker id="ab" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8b96a2"/></marker>
+    <marker id="af" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#e0972a"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="650" fill="#ffffff"/>
+
+  <!-- header -->
+  <text class="title" x="34" y="40">One big change — the grounded amygdala — and everything it redirects</text>
+  <text class="subtitle" x="34" y="64">The only novelty is one part — a grounded amygdala that makes its own reward. Everything else is standard RL, redirected to run on it.</text>
+
+  <!-- legend -->
+  <rect x="34" y="82" width="15" height="15" rx="3" class="rewardbox"/>
+  <text class="legend" x="56" y="94">★ Novelty — the grounded reward</text>
+  <rect x="290" y="82" width="15" height="15" rx="3" class="borrowedbox"/>
+  <text class="legend" x="312" y="94">Standard methods (trained into the cortex)</text>
+  <line class="afelt" marker-end="url(#af)" x1="584" y1="90" x2="604" y2="90"/>
+  <text class="legend" x="610" y="94">the reward, into the rest of the cortex</text>
+
+  <!-- ============ Band 1: perception → cortex produces z_t ============ -->
+  <rect x="34" y="128" width="206" height="56" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="48" y="152">Perception</text>
+  <text class="bsub" x="48" y="170">foveated vision + audio</text>
+
+  <rect x="286" y="128" width="298" height="56" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="300" y="152">World-model trunk</text>
+  <text class="bsub" x="300" y="170">V-JEPA-2-AC · Dreamer · Cosmos</text>
+
+  <rect x="630" y="128" width="248" height="56" rx="9" class="ztbox"/>
+  <text class="zt" x="646" y="151">z_t — shared latent</text>
+  <text class="zts" x="646" y="169">real | imagined</text>
+
+  <path class="aback" marker-end="url(#ab)" d="M240,156 L284,156"/>
+  <path class="aback" marker-end="url(#ab)" d="M584,156 L628,156"/>
+
+  <!-- z_t feeds the amygdala -->
+  <path class="afelt" marker-end="url(#af)" d="M700,184 L648,212"/>
+  <text class="alab" x="712" y="200">reads z_t</text>
+
+  <!-- ============ Band 2: THE AMYGDALA (hero) + pain ============ -->
+  <rect x="210" y="210" width="566" height="108" rx="12" class="amygbox"/>
+  <text class="amyg-t" x="230" y="242">★ THE AMYGDALA — the one big change</text>
+  <text class="amyg-s" x="230" y="267">a small net reads perception → a grounded, self-generated reward</text>
+  <text class="amyg-s2" x="230" y="288">dopamine = approach   ·   cortisol = threat   ·   social + attention</text>
+  <text class="amyg-i" x="230" y="307">the reward a hand-written objective can't be — the whole bet</text>
+
+  <rect x="800" y="210" width="346" height="108" rx="10" class="borrowedbox"/>
+  <text class="pain-t" x="818" y="238">Pain — the other innate primitive</text>
+  <text class="bsub" x="818" y="260">a hard aversive floor</text>
+  <text class="bsub" x="818" y="278">never fades · reflex below the policy</text>
+  <text class="borrowed" x="818" y="298">standard: momentum / disturbance observer</text>
+
+  <!-- amygdala + pain -> reward bus -->
+  <path class="afelt" marker-end="url(#af)" d="M493,318 L493,342"/>
+  <path class="aback" marker-end="url(#ab)" d="M973,318 L973,342"/>
+  <text class="bsub" x="982" y="336">− pain</text>
+
+  <!-- ============ the grounded felt reward (bus) ============ -->
+  <rect x="34" y="344" width="1112" height="42" rx="8" class="rewardbox"/>
+  <text class="reward" x="590" y="371" text-anchor="middle">the grounded felt reward  —  the amygdala's one output, fed to everything below</text>
+
+  <!-- ============ Band 3: standard RL, redirected onto the reward ============ -->
+  <text class="header" x="34" y="408">Everything below is standard RL — it becomes “felt” only because it now runs on that grounded reward:</text>
+
+  <path class="afelt" marker-end="url(#af)" d="M139,416 L139,434"/>
+  <path class="afelt" marker-end="url(#af)" d="M363,416 L363,434"/>
+  <path class="afelt" marker-end="url(#af)" d="M587,416 L587,434"/>
+  <path class="afelt" marker-end="url(#af)" d="M811,416 L811,434"/>
+  <path class="afelt" marker-end="url(#af)" d="M1035,416 L1035,434"/>
+
+  <rect x="34" y="436" width="210" height="116" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="48" y="460">Basal ganglia — value</text>
+  <text class="borrowed" x="48" y="479">standard: SimbaV2 critic</text>
+  <text class="bsub" x="48" y="499">learns value over the felt</text>
+  <text class="bsub" x="48" y="515">reward, not a given one</text>
+
+  <rect x="258" y="436" width="210" height="116" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="272" y="460">Dopamine-decay</text>
+  <text class="borrowed" x="272" y="479">= habituation (RPE-decay)</text>
+  <text class="bsub" x="272" y="499">a predicted good stops</text>
+  <text class="bsub" x="272" y="515">pulling → curiosity, free</text>
+
+  <rect x="482" y="436" width="210" height="116" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="496" y="460">Imagine-and-feel</text>
+  <text class="borrowed" x="496" y="479">standard: Dreamer / MuZero</text>
+  <text class="bsub" x="496" y="499">roll a future → the</text>
+  <text class="bsub" x="496" y="515">amygdala scores it</text>
+
+  <rect x="706" y="436" width="210" height="116" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="720" y="460">Feeling steers thinking</text>
+  <text class="borrowed" x="720" y="479">standard: ReAct / ToT search</text>
+  <text class="bsub" x="720" y="499">scores the reasoning trace</text>
+  <text class="bsub" x="720" y="515">→ picks a line of thought</text>
+
+  <rect x="930" y="436" width="210" height="116" rx="9" class="borrowedbox"/>
+  <text class="btitle" x="944" y="460">Growing up</text>
+  <text class="borrowed" x="944" y="479">standard: curriculum / dev</text>
+  <text class="bsub" x="944" y="499">grounded value outgrows</text>
+  <text class="bsub" x="944" y="515">the innate seed</text>
+
+  <!-- ============ Band 4: act + loop ============ -->
+  <path class="aback" marker-end="url(#ab)" d="M590,554 L590,576"/>
+  <rect x="34" y="578" width="1112" height="44" rx="8" class="barbox"/>
+  <text class="barlab" x="590" y="605" text-anchor="middle">the learned value &amp; policy act  →  action + deliberation  →  whole-body control  →  body  →  the world  →  new perception  ↩ (the loop closes)</text>
+</svg>

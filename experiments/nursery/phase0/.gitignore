@@ -1,0 +1,7 @@
+data_train/
+data_eval/
+data_smoke/
+ckpt/
+phase0_run.log
+esc1.log
+__pycache__/

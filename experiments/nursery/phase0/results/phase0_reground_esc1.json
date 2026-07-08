@@ -1,0 +1,60 @@
+{
+  "render_ceiling": {
+    "weak": [
+      0.6333333333333333,
+      23
+    ],
+    "strong": [
+      0.8467661691542289,
+      82
+    ]
+  },
+  "recon": {
+    "z_enc": {
+      "head_auc_weak": [
+        0.5833,
+        0.0136
+      ],
+      "head_auc_strong": [
+        0.667,
+        0.0137
+      ],
+      "probe_auc_strong": 0.7841
+    },
+    "z_full": {
+      "head_auc_weak": [
+        0.5,
+        0.0272
+      ],
+      "head_auc_strong": [
+        0.6282,
+        0.0544
+      ],
+      "probe_auc_strong": 0.5682
+    }
+  },
+  "jepa": {
+    "z_enc": {
+      "head_auc_weak": [
+        0.4222,
+        0.0342
+      ],
+      "head_auc_strong": [
+        0.5947,
+        0.0302
+      ],
+      "probe_auc_strong": 0.807
+    },
+    "z_full": {
+      "head_auc_weak": [
+        0.6444,
+        0.0283
+      ],
+      "head_auc_strong": [
+        0.5171,
+        0.0263
+      ],
+      "probe_auc_strong": 0.5612
+    }
+  }
+}
